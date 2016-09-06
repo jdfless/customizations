@@ -1,0 +1,27 @@
+[ui]
+username = tools@skytap.com <jflessner@skytap.com>
+merge = internal:merge
+
+[alias]
+commit-jdf = commit -u "Jonathan Flessner <jflessner@skytap.com>"
+blame = annotate --user --number
+
+[extensions]
+hgext.graphlog = 
+hgext.mq = 
+hgext.color =
+hgext.pager = 
+hgext.largefiles =
+
+[pager]
+pager = LESS='FRX' less
+
+[trusted]
+users = root, highland
+
+[color]
+status.modified = cyan bold
+status.added = green bold
+status.removed = red bold
+status.deleted = white bold
+status.unknown = magenta bold underline
