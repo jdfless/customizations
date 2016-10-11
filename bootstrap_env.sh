@@ -17,4 +17,4 @@ helping_scripts/add_jdf_to_repo.sh r1644
 helping_scripts/copy_to_all.sh /highland/.vim --no-prompt
 helping_scripts/copy_to_all.sh /highland/.hgrc --no-prompt
 helping_scripts/copy_to_all.sh /highland/.vim/colors/monokai.vim /highland/.vim/colors --no-prompt
-helping_scripts/copy_to_all.sh /highland/.vim./syntax/puppet.vim /highland/.vim/syntax --no-prompt
+helping_scripts/copy_to_all.sh /highland/.vim/syntax/puppet.vim /highland/.vim/syntax --no-prompt
