@@ -12,6 +12,11 @@ jdf="jdf = ssh://jflessner@source.corp.skytap.com//hg/"
 for repo in $(ls /hg); do
   file="/hg/${repo}/.hg/hgrc"
   if [ -f "$file" ]; then
+    # make idempotent so not multiple jdf's
+    if grep -q "jdf" "$file"; then
+      continue
+    fi
+    # add jdf with release or not
     if grep -q "$release" "$file"; then
       echo "${jdf}${release}/${repo}" >> "$file"
     else
