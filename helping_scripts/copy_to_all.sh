@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nodes=('dev-precise' 'dev-xenial' 'kube-jenkins' 'kube-minion1' 'kube-minion2' 'kube-minion3' 'kube-master1' 'kube-master2' 'app0' 'app1' 'kube-etcd1' 'kube-etcd2' 'kube-etcd3')
+nodes=('control' 'dev-precise' 'dev-xenial' 'kube-jenkins' 'kube-minion1' 'kube-minion2' 'kube-minion3' 'kube-master1' 'kube-master2' 'app0' 'app1' 'kube-etcd1' 'kube-etcd2' 'kube-etcd3')
 
 # source
 file_to_copy="$1"
