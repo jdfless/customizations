@@ -1,7 +1,13 @@
 #!/bin/bash
 
-if ! grep -f pub_key.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
-  cat pub_key.pub >> /highland/.ssh/authorized_keys2
+if ! grep -f pub_key_mac.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_mac.pub >> /highland/.ssh/authorized_keys2
+fi
+if ! grep -f pub_key_lap.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_lap.pub >> /highland/.ssh/authorized_keys2
+fi
+if ! grep -f pub_key_desk.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_desk.pub >> /highland/.ssh/authorized_keys2
 fi
 
 cp -r vim_dir ~/.vim
