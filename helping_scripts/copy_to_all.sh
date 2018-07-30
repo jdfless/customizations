@@ -19,6 +19,7 @@ if [ -f "$ip_yaml" ]; then
   if [ -f "$ip_yaml_r1" ]; then
     r1_nodes=$(get_nodes "$ip_yaml_r1")
     nodes+=" $(echo $r1_nodes)"
+  fi
 else
   nodes="control dev-precise dev-xenial app0 mysql0"
 fi
