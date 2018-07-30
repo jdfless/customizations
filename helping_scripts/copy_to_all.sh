@@ -3,7 +3,7 @@
 ip_yaml="/highland/config/ip_allocation_table.yaml"
 ip_yaml_r1="/highland/config/r1/ip_allocation_table.yaml"
 
-def get_nodes() {
+get_nodes() {
   yaml=$1
   nodes=$((echo "import yaml"; \
            echo "dict = yaml.load(open('${yaml}'))"; \
