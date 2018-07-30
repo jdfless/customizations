@@ -1,6 +1,27 @@
 #!/bin/bash
 
-nodes=('control' 'dev-precise' 'dev-xenial' 'kube-jenkins' 'kube-minion1' 'kube-minion2' 'kube-minion3' 'kube-master1' 'kube-master2' 'app0' 'app1' 'kube-etcd1' 'kube-etcd2' 'kube-etcd3')
+ip_yaml="/highland/config/ip_allocation_table.yaml"
+ip_yaml_r1="/highland/config/r1/ip_allocation_table.yaml"
+
+def get_nodes() {
+  yaml=$1
+  nodes=$((echo "import yaml"; \
+           echo "dict = yaml.load(open('${yaml}'))"; \
+           echo "values = dict.get('Stack Management').get('hosts')"; \
+           echo "for host in values: print host,") \
+           | python)
+
+  echo "$nodes"
+}
+
+if [ -f "$ip_yaml" ]; then
+  nodes=$(get_nodes "$ip_yaml")
+  if [ -f "$ip_yaml_r1" ]; then
+    r1_nodes=$(get_nodes "$ip_yaml_r1")
+    nodes+=" $(echo $r1_nodes)"
+else
+  nodes="control dev-precise dev-xenial app0 mysql0"
+fi
 
 # source
 file_to_copy="$1"
@@ -23,7 +44,7 @@ fi
 if [ -z "$no_interactive" ]; then
   # double check locations
   echo "Are you sure you want to copy $file_to_copy to $where_to_copy on the following hosts?"
-  for n in "${nodes[@]}"; do
+  for n in $nodes; do
     echo -n "$n; "
   done
 
@@ -43,7 +64,7 @@ else
 fi
 
 # do the mkdir and copy
-for node in "${nodes[@]}"; do
+for node in $nodes; do
   echo "Copying to $node... "
   # mkdir to ensure scp succeeds
   dir_path=$(dirname "$where_to_copy")
