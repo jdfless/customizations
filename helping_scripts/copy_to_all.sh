@@ -72,13 +72,12 @@ for node in $nodes; do
   echo "ssh $node mkdir -p ${dir_path}"
   ssh "$node" mkdir -p "$dir_path"
   if [ $? -ne 0 ]; then
-    echo "error: mkdir did not succeed"
-    exit 1
+    echo "ERROR: mkdir did not succeed for ${node}"
+    continue
   fi
   echo "scp $file_to_copy highland@$node:${where_to_copy}"
   scp "$file_to_copy" highland@"$node":"${where_to_copy}"
   if [ $? -ne 0 ]; then
-    echo "error: scp did not succeed"
-    exit 1
+    echo "ERROR: scp did not succeed for ${node}"
   fi
 done
