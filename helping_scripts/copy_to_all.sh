@@ -70,7 +70,7 @@ for node in $nodes; do
   # mkdir to ensure scp succeeds
   dir_path=$(dirname "$where_to_copy")
   echo "ssh $node mkdir -p ${dir_path}"
-  ssh "$node" mkdir -p "$dir_path"
+  ssh -oBatchMode=yes "$node" mkdir -p "$dir_path"
   if [ $? -ne 0 ]; then
     echo "ERROR: mkdir did not succeed for ${node}"
     continue
