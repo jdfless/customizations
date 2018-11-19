@@ -28,7 +28,7 @@ Host github.com
   Identity File ~/.ssh/jdf_skytap_github
 END
 
-helping_scripts/copy_to_all ~/.ssh/jdf_skytap_github
-helping_scripts/copy_to_all ~/.ssh/config
+helping_scripts/copy_to_all.sh ~/.ssh/jdf_skytap_github
+helping_scripts/copy_to_all.sh ~/.ssh/config
 
 echo "don't forget to add pubkey to github acct"
