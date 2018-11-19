@@ -19,16 +19,22 @@ helping_scripts/copy_to_all.sh /highland/.hgrc --same --no-prompt
 helping_scripts/copy_to_all.sh /highland/.vim/colors/monokai.vim --same --no-prompt
 helping_scripts/copy_to_all.sh /highland/.vim/syntax/puppet.vim --same --no-prompt
 
-echo "creating new github ssh key"
-ssh-keygen -f jdf_skytap_github -t rsa -b 4096 -C "jflessner@skytap.com" -N ''
+if [ ! -f ~/.ssh/jdf_skytap_github ]; then
+  echo "creating new github ssh key"
+  ssh-keygen -f ~/.ssh/jdf_skytap_github -t rsa -b 4096 -C "jflessner@skytap.com" -N ''
+fi
 
-cat <<END >> ~/.ssh/config
+git config --global user.email "jflessner@skytap.com"
+git config --global user.name "Jonathan Flessner"
+
+cat <<END > ~/.ssh/config
 Host github.com
   User highland
-  Identity File ~/.ssh/jdf_skytap_github
+  IdentityFile ~/.ssh/jdf_skytap_github
 END
 
-helping_scripts/copy_to_all.sh ~/.ssh/jdf_skytap_github
-helping_scripts/copy_to_all.sh ~/.ssh/config
+helping_scripts/copy_to_all.sh ~/.ssh/jdf_skytap_github --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.ssh/config --same --no-prompt
 
 echo "don't forget to add pubkey to github acct"
+echo "  - https://github.com/settings/keys"
