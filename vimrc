@@ -1,7 +1,8 @@
 set nocompatible
 set background=dark
+hi Normal ctermbg=NONE guibg=NONE
+hi NonText ctermbg=NONE guibg=NONE
 set pastetoggle=<f5>
-" set mouse=a " helps when ssh'd through putty, not great on mac terminal
 
 set tabstop=4
 set softtabstop=2
@@ -18,8 +19,10 @@ set ttimeoutlen=0
 " autocmd BufWritePre *.py :%s/\s\+$//e
 
 " http://stackoverflow.com/questions/526858/how-do-i-make-vim-do-normal-bash-like-tab-completion-for-file-names
-set wildmode=longest,list,full
+set wildmode=longest,list:full
 set wildmenu
+" Use tab in insert mode to complete
+imap <Tab> <C-P>
 
 " New splits should open below/right of current buffer.
 set splitbelow
@@ -27,14 +30,11 @@ set splitright
 
 " use monokai color scheme
 syntax on
-colorscheme monokai
+colorscheme nachtleben
 
 " Use enter and ctrl-o (to insert line above) to insert lines in normal mode w/o entering insert mode
 nmap <CR> o<Esc>
 nmap <C-O> O<Esc>
-
-" Use tab in insert mode to complete
-imap <Tab> <C-P>
 
 " Syntax for unknown filetypes
 au BufRead,BufNewFile *.gvy set filetype=java
