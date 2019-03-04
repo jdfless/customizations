@@ -40,3 +40,4 @@ helping_scripts/copy_to_all.sh ~/.ssh/config --same --no-prompt
 
 echo "don't forget to add pubkey to github acct"
 echo "  - https://github.com/settings/keys"
+cat ~/.ssh/jdf_skytap_github.pub
