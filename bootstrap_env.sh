@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# get status info from packages to save time in the future
+hg --cwd /highland/packages status &>/dev/null &
+
 if ! grep -f pub_key_mac.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
   cat pub_key_mac.pub >> /highland/.ssh/authorized_keys2
 fi
