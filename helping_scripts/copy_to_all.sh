@@ -21,7 +21,7 @@ if [ -f "$ip_yaml" ]; then
     nodes+=" $(echo $r1_nodes)"
   fi
 else
-  nodes="control dev-precise dev-xenial app0 mysql0"
+  nodes="jng4control1"
 fi
 
 # source
@@ -36,7 +36,7 @@ where_to_copy="$2"
 if [ "$where_to_copy" == "--same" ]; then
   where_to_copy="$file_to_copy"
 fi
-# don't prompt user if set
+# do not prompt user if set
 if [ "$3" == "--no-prompt" ]; then
   no_interactive="true"
 fi
@@ -69,14 +69,20 @@ for node in $nodes; do
   echo "Copying to $node... "
   # mkdir to ensure scp succeeds
   dir_path=$(dirname "$where_to_copy")
+
   echo "ssh $node mkdir -p ${dir_path}"
-  ssh -oBatchMode=yes "$node" mkdir -p "$dir_path"
+  ssh -o 'BatchMode=yes LogLevel=ERROR StrictHostKeyChecking=no' \
+      "$node" mkdir -p "$dir_path"
+
   if [ $? -ne 0 ]; then
     echo "ERROR: mkdir did not succeed for ${node}"
     continue
   fi
+
   echo "scp $file_to_copy highland@$node:${where_to_copy}"
-  scp "$file_to_copy" highland@"$node":"${where_to_copy}"
+  scp -o 'BatchMode=yes LogLevel=ERROR StrictHostKeyChecking=no' \
+      "$file_to_copy" highland@"$node":"${where_to_copy}"
+
   if [ $? -ne 0 ]; then
     echo "ERROR: scp did not succeed for ${node}"
   fi
