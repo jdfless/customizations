@@ -71,7 +71,11 @@ for node in $nodes; do
   dir_path=$(dirname "$where_to_copy")
 
   echo "ssh $node mkdir -p ${dir_path}"
-  ssh -o 'BatchMode=yes LogLevel=ERROR StrictHostKeyChecking=no' \
+  ssh -o BatchMode=yes \
+      -o LogLevel=error \
+      -o StrictHostKeyChecking=no \
+      -o GlobalKnownHostsFile=/dev/null \
+      -o UserKnownHostsFile=/dev/null \
       "$node" mkdir -p "$dir_path"
 
   if [ $? -ne 0 ]; then
@@ -80,7 +84,11 @@ for node in $nodes; do
   fi
 
   echo "scp $file_to_copy highland@$node:${where_to_copy}"
-  scp -o 'BatchMode=yes LogLevel=ERROR StrictHostKeyChecking=no' \
+  scp -o BatchMode=yes \
+      -o LogLevel=error \
+      -o StrictHostKeyChecking=no \
+      -o GlobalKnownHostsFile=/dev/null \
+      -o UserKnownHostsFile=/dev/null \
       "$file_to_copy" highland@"$node":"${where_to_copy}"
 
   if [ $? -ne 0 ]; then
