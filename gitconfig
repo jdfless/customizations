@@ -1,0 +1,5 @@
+[user]
+	email = jflessner@skytap.com
+	name = Jonathan Flessner
+[push]
+	default = simple
