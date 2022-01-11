@@ -83,13 +83,13 @@ for node in $nodes; do
     continue
   fi
 
-  echo "scp $file_to_copy highland@$node:${where_to_copy}"
+  echo "scp $file_to_copy $node:${where_to_copy}"
   scp -o BatchMode=yes \
       -o LogLevel=error \
       -o StrictHostKeyChecking=no \
       -o GlobalKnownHostsFile=/dev/null \
       -o UserKnownHostsFile=/dev/null \
-      "$file_to_copy" highland@"$node":"${where_to_copy}"
+      "$file_to_copy" "$node":"${where_to_copy}"
 
   if [ $? -ne 0 ]; then
     echo "ERROR: scp did not succeed for ${node}"

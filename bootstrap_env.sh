@@ -1,33 +1,30 @@
 #!/bin/bash
 
-# get status info from packages to save time in the future
-hg --cwd /highland/packages status &>/dev/null &
-
-if ! grep -f pub_key_mac.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
-  cat pub_key_mac.pub >> /highland/.ssh/authorized_keys2
+if ! grep -f pub_key_mac.pub ~/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_mac.pub >> ~/.ssh/authorized_keys2
 fi
-if ! grep -f pub_key_lap.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
-  cat pub_key_lap.pub >> /highland/.ssh/authorized_keys2
+if ! grep -f pub_key_lap.pub ~/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_lap.pub >> ~/.ssh/authorized_keys2
 fi
-if ! grep -f pub_key_desk.pub /highland/.ssh/authorized_keys2 &>/dev/null; then
-  cat pub_key_desk.pub >> /highland/.ssh/authorized_keys2
+if ! grep -f pub_key_desk.pub ~/.ssh/authorized_keys2 &>/dev/null; then
+  cat pub_key_desk.pub >> ~/.ssh/authorized_keys2
 fi
 
 cp -r vim_dir ~/.vim
 cp hgrc ~/.hgrc
 cp vimrc ~/.vimrc
 
-helping_scripts/copy_to_all.sh /highland/.vimrc --same --no-prompt
-helping_scripts/copy_to_all.sh /highland/.hgrc --same --no-prompt
-helping_scripts/copy_to_all.sh /highland/.vim/colors/monokai.vim --same --no-prompt
-helping_scripts/copy_to_all.sh /highland/.vim/colors/srcery.vim --same --no-prompt
-helping_scripts/copy_to_all.sh /highland/.vim/colors/nachtleben.vim --same --no-prompt
-helping_scripts/copy_to_all.sh /highland/.vim/syntax/puppet.vim --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.vimrc --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.hgrc --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.vim/colors/monokai.vim --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.vim/colors/srcery.vim --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.vim/colors/nachtleben.vim --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.vim/syntax/puppet.vim --same --no-prompt
 
 if [ ! -f ~/.ssh/jdf_skytap_github ]; then
   echo "creating new github ssh key"
   ssh-keygen -f ~/.ssh/jdf_skytap_github -t rsa -b 4096 -C "jflessner@skytap.com" -N ''
-  sudo chmod 0600 /highland/.ssh/jdf_skytap_github
+  sudo chmod 0600 ~/.ssh/jdf_skytap_github
   git remote set-url origin git@github.com:jdfless/customizations.git
 fi
 
