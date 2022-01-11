@@ -12,10 +12,12 @@ fi
 
 cp -r vim_dir ~/.vim
 cp hgrc ~/.hgrc
+cp gitconfig ~/.gitconfig
 cp vimrc ~/.vimrc
 
 helping_scripts/copy_to_all.sh ~/.vimrc --same --no-prompt
 helping_scripts/copy_to_all.sh ~/.hgrc --same --no-prompt
+helping_scripts/copy_to_all.sh ~/.gitconfig --same --no-prompt
 helping_scripts/copy_to_all.sh ~/.vim/colors/monokai.vim --same --no-prompt
 helping_scripts/copy_to_all.sh ~/.vim/colors/srcery.vim --same --no-prompt
 helping_scripts/copy_to_all.sh ~/.vim/colors/nachtleben.vim --same --no-prompt
